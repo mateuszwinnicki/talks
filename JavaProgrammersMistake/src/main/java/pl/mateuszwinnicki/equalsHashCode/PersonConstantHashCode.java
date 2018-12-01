@@ -2,9 +2,9 @@ package pl.mateuszwinnicki.equalsHashCode;
 
 import java.util.Objects;
 
-class PersonLowQualityHashCode extends Person {
+class PersonConstantHashCode extends Person {
 
-    PersonLowQualityHashCode(String name, Integer age) {
+    PersonConstantHashCode(String name, Integer age) {
         super(name, age);
     }
 
@@ -12,14 +12,13 @@ class PersonLowQualityHashCode extends Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonLowQualityHashCode that = (PersonLowQualityHashCode) o;
+        PersonConstantHashCode that = (PersonConstantHashCode) o;
         return Objects.equals(getName(), that.getName()) &&
             Objects.equals(getAge(), that.getAge());
     }
 
     @Override
     public int hashCode() {
-        return getAge() % 2;
+        return 42; // technically correct
     }
-
 }

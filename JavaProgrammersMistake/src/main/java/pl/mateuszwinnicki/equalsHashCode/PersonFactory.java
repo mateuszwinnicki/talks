@@ -4,15 +4,15 @@ import java.util.Random;
 
 final class PersonFactory {
 
-    static Person createRandomPersonBadHashCode() {
-        return new PersonBadHashCode(
+    static Person createRandomPersonConstantHashCode() {
+        return new PersonConstantHashCode(
             "Random",
             new Random().nextInt() % 100
         );
     }
 
-    static Person createRandomPersonBetterHashCode() {
-        return new PersonBetterHashCode(
+    static Person createRandomPersonFineHashCode() {
+        return new PersonFineHashCode(
             "Random",
             new Random().nextInt() % 100
         );
@@ -20,6 +20,13 @@ final class PersonFactory {
 
     static Person createRandomPersonLowQualityHashCode() {
         return new PersonLowQualityHashCode(
+            "Random",
+            new Random().nextInt() % 100
+        );
+    }
+
+    static Person createRandomPersonWithConstantHashCodeAndComparable() {
+        return new PersonConstantHashCodeComparable(
             "Random",
             new Random().nextInt() % 100
         );
