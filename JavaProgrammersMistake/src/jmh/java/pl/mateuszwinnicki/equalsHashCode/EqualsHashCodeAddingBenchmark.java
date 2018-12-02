@@ -11,6 +11,7 @@ import pl.mateuszwinnicki.model.PersonFactory;
 import pl.mateuszwinnicki.model.PersonHashCodeType;
 
 import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 @Fork(value = 1)
@@ -22,8 +23,8 @@ public class EqualsHashCodeAddingBenchmark {
     private static final int endExclusive = 100000;
 
     @Benchmark
-    public HashSet<Person> constantHashCode() {
-        var set = new HashSet<Person>();
+    public Set<Person> constantHashCode() {
+        Set<Person> set = new HashSet<>();
         IntStream.range(1, endExclusive).mapToObj(
             i -> PersonFactory.createRandomPerson(PersonHashCodeType.CONSTANT)
         ).forEach(set::add);
@@ -31,8 +32,8 @@ public class EqualsHashCodeAddingBenchmark {
     }
 
     @Benchmark
-    public HashSet<Person> lowQualityHashCode() {
-        var set = new HashSet<Person>();
+    public Set<Person> lowQualityHashCode() {
+        Set<Person> set = new HashSet<>();
         IntStream.range(1, endExclusive).mapToObj(
             i -> PersonFactory.createRandomPerson(PersonHashCodeType.VERY_LOW_QUALITY)
         ).forEach(set::add);
@@ -40,8 +41,8 @@ public class EqualsHashCodeAddingBenchmark {
     }
 
     @Benchmark
-    public HashSet<Person> fineHashCode() {
-        var set = new HashSet<Person>();
+    public Set<Person> fineHashCode() {
+        Set<Person> set = new HashSet<>();
         IntStream.range(1, endExclusive).mapToObj(
             i -> PersonFactory.createRandomPerson(PersonHashCodeType.FINE)
         ).forEach(set::add);
@@ -49,8 +50,8 @@ public class EqualsHashCodeAddingBenchmark {
     }
 
     @Benchmark
-    public HashSet<Person> constantHashCodeWithComparable() {
-        var set = new HashSet<Person>();
+    public Set<Person> constantHashCodeWithComparable() {
+        Set<Person> set = new HashSet<>();
         IntStream.range(1, endExclusive).mapToObj(
             i -> PersonFactory.createRandomPerson(PersonHashCodeType.CONSTANT_AND_COMPARABLE)
         ).forEach(set::add);
