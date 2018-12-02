@@ -57,7 +57,7 @@ public class ComparableMistakes {
      * Equals by name, but compareTo by age
      */
     @Test
-    public void distinctAndSortedStream() {
+    public void firstSortedThanDistinctStream() {
         Person p1 = new PersonComparableNotConsistent("Mateusz", 30);
         Person p2 = new PersonComparableNotConsistent("Mateusz", 20);
         Person p3 = new PersonComparableNotConsistent("Mateusz", 10);
@@ -73,5 +73,24 @@ public class ComparableMistakes {
         assertEquals(2, result.size());
     }
 
+    /**
+     * Equals by name, but compareTo by age
+     */
+    @Test
+    public void firstDistinctThanSortedStream() {
+        Person p1 = new PersonComparableNotConsistent("Mateusz", 30);
+        Person p2 = new PersonComparableNotConsistent("Mateusz", 20);
+        Person p3 = new PersonComparableNotConsistent("Mateusz", 10);
+        Person p4 = new PersonComparableNotConsistent("Kamil", 11);
+        Person p5 = new PersonComparableNotConsistent("Kamil", 22);
+
+        List<Person> result = Stream.of(p1, p2, p3, p4, p5)
+            .distinct()
+            .sorted()
+            .peek(System.out::println)
+            .collect(Collectors.toList());
+
+        assertEquals(2, result.size());
+    }
 
 }
