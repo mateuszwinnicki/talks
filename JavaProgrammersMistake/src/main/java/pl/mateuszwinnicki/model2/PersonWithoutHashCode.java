@@ -1,4 +1,6 @@
-package pl.mateuszwinnicki.model;
+package pl.mateuszwinnicki.model2;
+
+import pl.mateuszwinnicki.model.Person;
 
 import java.util.Objects;
 

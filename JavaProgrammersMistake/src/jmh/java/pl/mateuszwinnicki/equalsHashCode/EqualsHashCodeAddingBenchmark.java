@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 @Warmup(iterations = 1, time = 1)
 @Measurement(iterations = 3, time = 3)
 @BenchmarkMode(Mode.AverageTime)
-public class EqualsHashCodeBenchmark {
+public class EqualsHashCodeAddingBenchmark {
 
     private static final int endExclusive = 100000;
 
@@ -31,7 +31,7 @@ public class EqualsHashCodeBenchmark {
     }
 
     @Benchmark
-    public HashSet<Person> lowQualiyHashCode() {
+    public HashSet<Person> lowQualityHashCode() {
         var set = new HashSet<Person>();
         IntStream.range(1, endExclusive).mapToObj(
             i -> PersonFactory.createRandomPerson(PersonHashCodeType.VERY_LOW_QUALITY)
