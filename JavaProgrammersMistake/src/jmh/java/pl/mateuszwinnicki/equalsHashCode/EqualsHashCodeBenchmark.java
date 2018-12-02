@@ -6,6 +6,9 @@ import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Warmup;
+import pl.mateuszwinnicki.model.Person;
+import pl.mateuszwinnicki.model.PersonFactory;
+import pl.mateuszwinnicki.model.PersonHashCodeType;
 
 import java.util.HashSet;
 import java.util.stream.IntStream;
@@ -22,7 +25,7 @@ public class EqualsHashCodeBenchmark {
     public HashSet<Person> constantHashCode() {
         var set = new HashSet<Person>();
         IntStream.range(1, endExclusive).mapToObj(
-            i -> PersonFactory.createRandomPersonConstantHashCode()
+            i -> PersonFactory.createRandomPerson(PersonHashCodeType.CONSTANT)
         ).forEach(set::add);
         return set;
     }
@@ -31,7 +34,7 @@ public class EqualsHashCodeBenchmark {
     public HashSet<Person> lowQualiyHashCode() {
         var set = new HashSet<Person>();
         IntStream.range(1, endExclusive).mapToObj(
-            i -> PersonFactory.createRandomPersonLowQualityHashCode()
+            i -> PersonFactory.createRandomPerson(PersonHashCodeType.VERY_LOW_QUALITY)
         ).forEach(set::add);
         return set;
     }
@@ -40,7 +43,7 @@ public class EqualsHashCodeBenchmark {
     public HashSet<Person> fineHashCode() {
         var set = new HashSet<Person>();
         IntStream.range(1, endExclusive).mapToObj(
-            i -> PersonFactory.createRandomPersonFineHashCode()
+            i -> PersonFactory.createRandomPerson(PersonHashCodeType.FINE)
         ).forEach(set::add);
         return set;
     }
@@ -49,7 +52,7 @@ public class EqualsHashCodeBenchmark {
     public HashSet<Person> constantHashCodeWithComparable() {
         var set = new HashSet<Person>();
         IntStream.range(1, endExclusive).mapToObj(
-            i -> PersonFactory.createRandomPersonWithConstantHashCodeAndComparable()
+            i -> PersonFactory.createRandomPerson(PersonHashCodeType.CONSTANT_AND_COMPARABLE)
         ).forEach(set::add);
         return set;
     }

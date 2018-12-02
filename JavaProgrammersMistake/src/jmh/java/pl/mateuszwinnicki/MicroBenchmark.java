@@ -1,5 +1,6 @@
 package pl.mateuszwinnicki;
 
+
 import org.openjdk.jmh.Main;
 
 public class MicroBenchmark {

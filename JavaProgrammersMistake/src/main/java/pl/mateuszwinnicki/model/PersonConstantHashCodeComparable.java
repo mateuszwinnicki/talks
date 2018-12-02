@@ -1,4 +1,4 @@
-package pl.mateuszwinnicki.equalsHashCode;
+package pl.mateuszwinnicki.model;
 
 import java.util.Comparator;
 import java.util.Objects;

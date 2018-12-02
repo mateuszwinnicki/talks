@@ -5,6 +5,24 @@ plugins {
 group 'pl.mateuszwinnicki'
 version '1.0-SNAPSHOT'
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'src/jmh/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+        resources {
+            srcDirs = ['src/test/resources']
+        }
+    }
+}
 
 repositories {
     mavenCentral()

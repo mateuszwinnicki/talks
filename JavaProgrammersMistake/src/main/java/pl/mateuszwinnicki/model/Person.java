@@ -1,6 +1,6 @@
-package pl.mateuszwinnicki.equalsHashCode;
+package pl.mateuszwinnicki.model;
 
-abstract class Person {
+public abstract class Person {
 
     private String name;
     private Integer age;
@@ -17,9 +17,5 @@ abstract class Person {
     Integer getAge() {
         return age;
     }
-
-    public abstract int hashCode();
-
-    public abstract boolean equals(Object object);
 
 }
