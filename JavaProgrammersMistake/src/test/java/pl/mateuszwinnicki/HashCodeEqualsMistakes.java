@@ -1,11 +1,11 @@
 package pl.mateuszwinnicki;
 
 import org.junit.Test;
-import pl.mateuszwinnicki.model.Person;
-import pl.mateuszwinnicki.model2.PersonInconsistent;
-import pl.mateuszwinnicki.model2.PersonWithHashCodeOnly;
-import pl.mateuszwinnicki.model2.PersonWithoutEqualsAndHashCode;
-import pl.mateuszwinnicki.model2.PersonWithoutHashCode;
+import pl.mateuszwinnicki.benchmark.Person;
+import pl.mateuszwinnicki.examples.PersonInconsistent;
+import pl.mateuszwinnicki.examples.PersonWithHashCodeOnly;
+import pl.mateuszwinnicki.examples.PersonWithoutEqualsAndHashCode;
+import pl.mateuszwinnicki.examples.PersonWithoutHashCode;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +16,9 @@ public class HashCodeEqualsMistakes {
 
     @Test
     public void hashCodeAndEqualsNotImplemented() {
-        Set<Person> set = new HashSet<>();
-        Person p1 = new PersonWithoutEqualsAndHashCode("Mateusz", 25);
-        Person p2 = new PersonWithoutEqualsAndHashCode("Mateusz", 25);
+        final Set<Person> set = new HashSet<>();
+        final Person p1 = new PersonWithoutEqualsAndHashCode("Mateusz", 25);
+        final Person p2 = new PersonWithoutEqualsAndHashCode("Mateusz", 25);
 
         System.out.println(p1.equals(p2));
 
@@ -30,9 +30,9 @@ public class HashCodeEqualsMistakes {
 
     @Test
     public void onlyEqualsIsImplemented() {
-        Set<Person> set = new HashSet<>();
-        Person p1 = new PersonWithoutHashCode("Mateusz", 25);
-        Person p2 = new PersonWithoutHashCode("Mateusz", 25);
+        final Set<Person> set = new HashSet<>();
+        final Person p1 = new PersonWithoutHashCode("Mateusz", 25);
+        final Person p2 = new PersonWithoutHashCode("Mateusz", 25);
 
         assertEquals(p1, p2);
 
@@ -44,9 +44,9 @@ public class HashCodeEqualsMistakes {
 
     @Test
     public void onlyHashCodeIsImplemented() {
-        Set<Person> set = new HashSet<>();
-        Person p1 = new PersonWithHashCodeOnly("Mateusz", 25);
-        Person p2 = new PersonWithHashCodeOnly("Mateusz", 25);
+        final Set<Person> set = new HashSet<>();
+        final Person p1 = new PersonWithHashCodeOnly("Mateusz", 25);
+        final Person p2 = new PersonWithHashCodeOnly("Mateusz", 25);
 
         set.add(p1);
         set.add(p2);
@@ -56,9 +56,9 @@ public class HashCodeEqualsMistakes {
 
     @Test
     public void hashCodeInconsistentWithEquals() {
-        Set<Person> set = new HashSet<>();
-        Person p1 = new PersonInconsistent("Mateusz", 30);
-        Person p2 = new PersonInconsistent("Mateusz", 40);
+        final Set<Person> set = new HashSet<>();
+        final Person p1 = new PersonInconsistent("Mateusz", 30);
+        final Person p2 = new PersonInconsistent("Mateusz", 40);
 
         assertEquals(p1, p2);
 

@@ -1,11 +1,11 @@
-package pl.mateuszwinnicki.model;
+package pl.mateuszwinnicki.benchmark;
 
 public abstract class Person {
 
-    private String name;
-    private Integer age;
+    private final String name;
+    private final Integer age;
 
-    protected Person(String name, Integer age) {
+    protected Person(final String name, final Integer age) {
         this.name = name;
         this.age = age;
     }

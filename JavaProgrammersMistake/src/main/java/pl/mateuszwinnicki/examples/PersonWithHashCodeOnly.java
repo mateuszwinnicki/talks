@@ -1,12 +1,12 @@
-package pl.mateuszwinnicki.model2;
+package pl.mateuszwinnicki.examples;
 
-import pl.mateuszwinnicki.model.Person;
+import pl.mateuszwinnicki.benchmark.Person;
 
 import java.util.Objects;
 
 public class PersonWithHashCodeOnly extends Person {
 
-    public PersonWithHashCodeOnly(String name, Integer age) {
+    public PersonWithHashCodeOnly(final String name, final Integer age) {
         super(name, age);
     }
 

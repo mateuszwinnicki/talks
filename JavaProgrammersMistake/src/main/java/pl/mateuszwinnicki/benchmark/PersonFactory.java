@@ -1,12 +1,12 @@
-package pl.mateuszwinnicki.model;
+package pl.mateuszwinnicki.benchmark;
 
 import java.util.Random;
 
 public final class PersonFactory {
 
-    public static Person createRandomPerson(PersonHashCodeType type) {
-        String name = "Mateusz";
-        Integer age = new Random().nextInt() % 100;
+    public static Person createRandomPerson(final PersonHashCodeType type) {
+        final String name = "Mateusz";
+        final Integer age = new Random().nextInt() % 1_000;
         switch (type) {
             case CONSTANT: return new PersonConstantHashCode(name, age);
             case CONSTANT_AND_COMPARABLE: return new PersonConstantHashCodeComparable(name, age);

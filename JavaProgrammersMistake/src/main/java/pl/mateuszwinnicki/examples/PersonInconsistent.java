@@ -1,6 +1,6 @@
-package pl.mateuszwinnicki.model2;
+package pl.mateuszwinnicki.examples;
 
-import pl.mateuszwinnicki.model.Person;
+import pl.mateuszwinnicki.benchmark.Person;
 
 import java.util.Objects;
 
@@ -13,15 +13,19 @@ public class PersonInconsistent extends Person {
      * @param name
      * @param age
      */
-    public PersonInconsistent(String name, Integer age) {
+    public PersonInconsistent(final String name, final Integer age) {
         super(name, age);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PersonInconsistent that = (PersonInconsistent) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final PersonInconsistent that = (PersonInconsistent) o;
         return Objects.equals(getName(), that.getName());
     }
 

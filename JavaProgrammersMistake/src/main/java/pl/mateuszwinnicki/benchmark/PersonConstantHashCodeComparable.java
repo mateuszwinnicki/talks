@@ -1,19 +1,23 @@
-package pl.mateuszwinnicki.model;
+package pl.mateuszwinnicki.benchmark;
 
 import java.util.Comparator;
 import java.util.Objects;
 
 class PersonConstantHashCodeComparable extends Person implements Comparable<PersonConstantHashCodeComparable> {
 
-    PersonConstantHashCodeComparable(String name, Integer age) {
+    PersonConstantHashCodeComparable(final String name, final Integer age) {
         super(name, age);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PersonConstantHashCodeComparable that = (PersonConstantHashCodeComparable) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final PersonConstantHashCodeComparable that = (PersonConstantHashCodeComparable) o;
         return Objects.equals(getName(), that.getName()) &&
             Objects.equals(getAge(), that.getAge());
     }
@@ -24,7 +28,7 @@ class PersonConstantHashCodeComparable extends Person implements Comparable<Pers
     }
 
     @Override
-    public int compareTo(PersonConstantHashCodeComparable person) {
+    public int compareTo(final PersonConstantHashCodeComparable person) {
         return Comparator.comparing(Person::getAge)
             .thenComparing(Person::getName)
             .compare(this, person);
