@@ -24,7 +24,6 @@ import java.util.stream.IntStream;
 public class EqualsHashCodeAddingBenchmark {
 
     private static final int INITIAL_STATE_SIZE = 100_000;
-    private static final int ADD_TO = 10_000;
 
     @State(Scope.Thread)
     public static class ConstantHashCodeState {

@@ -20,8 +20,6 @@ public class HashCodeEqualsMistakes {
         final Person p1 = new PersonWithoutEqualsAndHashCode("Mateusz", 25);
         final Person p2 = new PersonWithoutEqualsAndHashCode("Mateusz", 25);
 
-        System.out.println(p1.equals(p2));
-
         set.add(p1);
         set.add(p2);
 
