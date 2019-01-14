@@ -20,8 +20,8 @@ import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 @Fork(value = 1)
-@Warmup(iterations = 2, time = 1, batchSize = 10000)
-@Measurement(iterations = 3, time = 2, batchSize = 10000)
+@Warmup(iterations = 2, time = 1, batchSize = 1000)
+@Measurement(iterations = 3, time = 1, batchSize = 1000)
 @BenchmarkMode(Mode.AverageTime)
 public class ListBenchmark {
 
@@ -30,10 +30,10 @@ public class ListBenchmark {
         public ArrayList<Person> list = new ArrayList<>();
         public Person person;
 
-        @Param({"1", "50", "100", "500", "999"})
+        @Param({"1", "50", "100", "500", "799", "949", "999"})
         public int index;
 
-        @Setup(Level.Invocation)
+        @Setup(Level.Trial)
         public void setup() {
             for(int i = 0; i < 1000; i++) {
                 list.add(new Person());
@@ -41,7 +41,7 @@ public class ListBenchmark {
             person = new Person();
         }
 
-        @TearDown(Level.Invocation)
+        @TearDown(Level.Trial)
         public void tearDown() {
             list.clear();
         }
@@ -52,10 +52,10 @@ public class ListBenchmark {
         public LinkedList<Person> list = new LinkedList<>();
         public Person person;
 
-        @Param({"1", "50", "100", "500", "999"})
+        @Param({"1", "50", "100", "500", "799", "949", "999"})
         public int index;
 
-        @Setup(Level.Invocation)
+        @Setup(Level.Trial)
         public void setup() {
             for(int i = 0; i < 1000; i++) {
                 list.add(new Person());
@@ -63,22 +63,22 @@ public class ListBenchmark {
             person = new Person();
         }
 
-        @TearDown(Level.Invocation)
+        @TearDown(Level.Trial)
         public void tearDown() {
             list.clear();
         }
     }
 
     @Benchmark
-    @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public Person arrayListRemoveIncrease(final ArrayListStateWithParam state) {
-        return state.list.remove(state.index);
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public Person arrayListGet(final ArrayListStateWithParam state) {
+        return state.list.get(state.index);
     }
 
     @Benchmark
-    @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public Person linkedListRemoveIncrease(final LinkedListStateWithParam state) {
-        return state.list.remove(state.index);
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public Person linkedListGet(final LinkedListStateWithParam state) {
+        return state.list.get(state.index);
     }
 
 }

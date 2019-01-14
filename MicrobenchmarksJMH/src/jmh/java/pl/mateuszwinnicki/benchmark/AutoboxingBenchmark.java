@@ -14,43 +14,44 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 2, time = 1)
 @Measurement(iterations = 3, time = 2)
 @BenchmarkMode(Mode.AverageTime)
+
 public class AutoboxingBenchmark {
 
     @Benchmark
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public Long allObjects() {
         Long sum = 0L;
-        for (Integer i = 0; i < Integer.MAX_VALUE; i++) {
+        for (Integer i = 0; i < Integer.MAX_VALUE/20; i++) {
             sum += i;
         }
         return sum;
     }
 
     @Benchmark
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public long primitiveAggregatorObjectAdder() {
         long sum = 0L;
-        for (Integer i = 0; i < Integer.MAX_VALUE; i++) {
+        for (Integer i = 0; i < Integer.MAX_VALUE/20; i++) {
             sum += i;
         }
         return sum;
     }
 
     @Benchmark
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public Long objectAggregatorPrimitiveAdder() {
         Long sum = 0L;
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        for (int i = 0; i < Integer.MAX_VALUE/20; i++) {
             sum += i;
         }
         return sum;
     }
 
     @Benchmark
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public long allPrimitives() {
         long sum = 0L;
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        for (int i = 0; i < Integer.MAX_VALUE/20; i++) {
             sum += i;
         }
         return sum;
