@@ -27,17 +27,30 @@ public class Main {
         final Callable<Response<String>> badCallable = CircuitBreaker.decorateCallable(
             cb, () -> service.get(new IllegalStateException())
         );
+        fineCall(cb, fineCallable);
+        fineCall(cb, fineCallable);
+        fineCall(cb, fineCallable);
+        fineCall(cb, fineCallable);
+        fineCall(cb, fineCallable);
+
 
         fineCall(cb, fineCallable);
+        System.out.println();
         fineCall(cb, fineCallable);
+        System.out.println();
         callFailed(cb, badCallable);
+        System.out.println();
         callFailed(cb, badCallable);
+        System.out.println();
         callFailed(cb, badCallable);
+        System.out.println();
 
         System.out.println("CB is open");
         //circuit opened
         fineCall(cb, fineCallable);
+        System.out.println();
         callFailed(cb, badCallable);
+        System.out.println();
 
         Thread.sleep(1000 * 3);
 
@@ -46,14 +59,15 @@ public class Main {
 
         System.out.println("Fail again");
         callFailed(cb, badCallable);
+        System.out.println();
         callFailed(cb, badCallable);
+        System.out.println();
 
         System.out.println("CB is open");
         fineCall(cb, fineCallable);
+        System.out.println();
         fineCall(cb, fineCallable);
-
-
-
+        System.out.println();
     }
 
     private static void fineCall(final CircuitBreaker cb, final Callable<Response<String>> fineCallable) {

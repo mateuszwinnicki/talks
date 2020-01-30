@@ -7,14 +7,11 @@ import pl.mateuszwinicki.resilience.Response;
 
 import java.time.Duration;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Main {
 
     public static void main(final String[] args) throws InterruptedException {
         final ExternalService service = new ExternalService();
-        final ExecutorService executorService = Executors.newFixedThreadPool(30);
 
         final RateLimiterConfig config = RateLimiterConfig.custom()
             .limitRefreshPeriod(Duration.ofSeconds(10))
@@ -42,8 +39,6 @@ public class Main {
 
         Thread.sleep(1000 * 10);
 
-
-        executorService.shutdown();
     }
 
 }

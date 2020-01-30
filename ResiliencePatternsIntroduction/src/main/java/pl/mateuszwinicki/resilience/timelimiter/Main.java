@@ -2,13 +2,11 @@ package pl.mateuszwinicki.resilience.timelimiter;
 
 import io.github.resilience4j.timelimiter.TimeLimiter;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
-import io.vavr.control.Try;
 import pl.mateuszwinicki.resilience.ExternalService;
 import pl.mateuszwinicki.resilience.Response;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 
 import static pl.mateuszwinicki.resilience.ExternalService.FORMATTER;
@@ -47,15 +45,6 @@ public class Main {
         } catch (final Exception e) {
             System.out.println(String.format("[%s] call finished exceptionally %s", FORMATTER.format(LocalTime.now()), e));
         }
-        System.out.println();
-
-        // with Try.of
-        final CompletableFuture<Response<String>> responseCompletableFuture = CompletableFuture.supplyAsync(
-            () -> service.getButWait(200, "/data/usr/234/logo.png", Duration.ofSeconds(5))
-        );
-        final Callable<Response<String>> restrictedCall = TimeLimiter.decorateFutureSupplier(timeLimiter, () -> responseCompletableFuture);
-        Try.of(restrictedCall::call)
-            .onFailure(e -> System.out.println(String.format("[%s] call finished exceptionally %s", FORMATTER.format(LocalTime.now()), e)));
         System.out.println();
     }
 
