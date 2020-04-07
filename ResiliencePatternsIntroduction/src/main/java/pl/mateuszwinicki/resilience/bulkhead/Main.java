@@ -20,12 +20,11 @@ public class Main {
 
         final Bulkhead bulkhead = Bulkhead.of("Bulkhead", config);
 
-
         final Callable<Response<String>> callable = Bulkhead.decorateCallable(
             bulkhead, () -> service.getButWait(200, "OK", Duration.ofSeconds(3))
         );
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 20; i++){
             new Thread(() -> {
                 try {
                     callable.call();
@@ -34,6 +33,7 @@ public class Main {
                 }
             }).start();
         }
+
 
         Thread.sleep(1000 * 15);
     }

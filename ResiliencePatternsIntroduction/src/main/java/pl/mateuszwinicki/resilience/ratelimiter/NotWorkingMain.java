@@ -11,6 +11,7 @@ import java.util.concurrent.Callable;
 
 public class NotWorkingMain {
 
+    //https://stackoverflow.com/questions/59947739/resilience4j-ratelimiter-seems-to-ignore-configuration
     public static void main(final String[] args) throws InterruptedException {
         final ExternalService service = new ExternalService();
 

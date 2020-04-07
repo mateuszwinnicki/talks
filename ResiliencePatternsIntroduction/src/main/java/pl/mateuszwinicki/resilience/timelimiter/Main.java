@@ -23,7 +23,7 @@ public class Main {
 
         final TimeLimiter timeLimiter = TimeLimiter.of(config);
 
-        //fail on timeout
+        System.out.println("First scenario: timeout after 3 seconds, service return response after 5 seconds");
         try {
             final CompletableFuture<Response<String>> responseCompletableFuture = CompletableFuture.supplyAsync(
                 () -> service.getButWait(200, "/data/usr/123/logo.png", Duration.ofSeconds(5))
@@ -35,7 +35,7 @@ public class Main {
         }
         System.out.println();
 
-        //no fail
+        System.out.println("Second scenario: timeout after 3 seconds, service return response after 1 second");
         try {
             final CompletableFuture<Response<String>> responseCompletableFuture = CompletableFuture.supplyAsync(
                 () -> service.getButWait(200, "/data/usr/234/logo.png", Duration.ofSeconds(1))

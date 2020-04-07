@@ -27,6 +27,8 @@ public class Main {
         final Callable<Response<String>> badCallable = CircuitBreaker.decorateCallable(
             cb, () -> service.get(new IllegalStateException())
         );
+
+        System.out.println("CB's state: close");
         fineCall(cb, fineCallable);
         fineCall(cb, fineCallable);
         fineCall(cb, fineCallable);
@@ -45,25 +47,45 @@ public class Main {
         callFailed(cb, badCallable);
         System.out.println();
 
-        System.out.println("CB is open");
-        //circuit opened
+        System.out.println("CB's state: open");
+
         fineCall(cb, fineCallable);
         System.out.println();
         callFailed(cb, badCallable);
         System.out.println();
 
+        System.out.println("Waiting 3 seconds for half open state.");
         Thread.sleep(1000 * 3);
 
-        System.out.println("CB is half open");
+        System.out.println("CB's state: half open");
 
-
-        System.out.println("Fail again");
+        System.out.println("Try and fail");
         callFailed(cb, badCallable);
         System.out.println();
         callFailed(cb, badCallable);
         System.out.println();
 
-        System.out.println("CB is open");
+        System.out.println("CB's state: open");
+        fineCall(cb, fineCallable);
+        System.out.println();
+        fineCall(cb, fineCallable);
+        System.out.println();
+
+        System.out.println("Waiting 3 seconds for half open state.");
+        Thread.sleep(1000 * 3);
+
+        System.out.println("CB's state: half open");
+        fineCall(cb, fineCallable);
+        System.out.println();
+        fineCall(cb, fineCallable);
+        System.out.println();
+
+        System.out.println("CB's state: close");
+
+        fineCall(cb, fineCallable);
+        System.out.println();
+        fineCall(cb, fineCallable);
+        System.out.println();
         fineCall(cb, fineCallable);
         System.out.println();
         fineCall(cb, fineCallable);
